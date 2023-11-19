@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="styles.css">
+<head><div class="navbar">
+    <ul><li>Home</li>
+    <li>My Network</li>
+    <li>Jobs</li>
+    <li>Messaging</li>
+    <li>Notifications</li>
+    <li>Me</li></ul>
+</div>
+<!-- Firebase App (the core Firebase SDK) -->
+<script defer src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+
+<!-- Firebase Auth (the Firebase SDK for authentication) -->
+<script defer src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+
+<script src="form2.js"></script>
+<div class="spot"></div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="header"><h1>
+        LinkedIn
+    </h1></div>
+   <div class="tagline"> <p>Social Media for Professionals
+    <p>
+        </div>
+        
+</head>
+<body>
+    <!-- Example HTML button -->
+<button id="googleSignInButton">Sign in with Google</button>
+<!-- Add this to the <head> of your HTML file -->
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.5/firebase-auth.js"></script>
+    
+    <!-- Your other HTML content -->
+    
+    <!-- Add a button with an id for Google Sign-In -->
+    <button id="googleSignInButton">Sign in with Google</button>
+    
+    <script type="module">
+      // Import necessary Firebase modules
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js';
+      import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.6.5/firebase-auth.js';
+    
+      // Your Firebase configuration
+      const firebaseConfig = {
+        //confidential details 
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    
+      // Get the Auth instance
+      const auth = getAuth(app);
+    
+      // Create a GoogleAuthProvider instance
+      const provider = new GoogleAuthProvider();
+    
+      // Add additional scopes if needed
+      provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    
+      // Function to handle Google Sign-In
+      const signInWithGoogle = () => {
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            // This gives you a Google Access Token
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info
+            const user = result.user;
+            console.log(token, user);
+          })
+          .catch((error) => {
+            // Handle errors here
+            console.error(error);
+          });
+      };
+    
+      // Add an event listener to the Google Sign-In button
+      document.getElementById('googleSignInButton').addEventListener('click', signInWithGoogle);
+    </script>
+    
+</body>
+</html>
